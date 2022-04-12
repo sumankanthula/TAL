@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/TAL.Database/bin/Debug/net5.0
+/TAL.Database/obj
+/TAL.Services/bin/Debug/net5.0
+/TAL.Services/obj

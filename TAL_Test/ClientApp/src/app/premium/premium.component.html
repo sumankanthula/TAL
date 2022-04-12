@@ -1,0 +1,54 @@
+<h1 id="tableLabel">Premium Calculator</h1>
+
+<div *ngIf="!isSetupDone">
+  {{setupProgressText}}
+</div>
+
+<div *ngIf="this.errorMessages.length" class="alert alert-danger" role="alert" [innerHTML]="this.errorMessages.join('<br />')">
+
+</div>
+
+<form *ngIf="isSetupDone" [formGroup]="premiumFormData">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputName">Name</label>
+      <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="Name">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputAge">Age</label>
+      <input type="number" class="form-control" id="inputAge" formControlName="age" placeholder="Age">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputDob">Date of Birth</label>
+      <input type="date" class="form-control" id="inputName" formControlName="dob" placeholder="inputDob">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputState">Ocupation</label>
+      <select *ngIf="premiumData" id="inputState" class="form-control" formControlName="occupation" (change)="onOccupationChange($event.target.value)">
+        <option *ngFor="let c of premiumData.occupations" [ngValue]="c.id">{{c.name}}</option>
+      </select>
+    </div>
+  </div>
+
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputdeathSumInsured">Death – Sum Insured</label>
+      <input type="number" class="form-control" id="inputdeathSumInsured" formControlName="deathSumInsured" placeholder="Death Sum Insured">
+    </div>
+
+    <div class="form-group col-md-6">
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="onPremiumCalculate()">Calculate</button>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label>Your monthly premium is {{monthlyPremium}} </label>
+
+    </div>
+  </div>
+</form>
