@@ -7,3 +7,4 @@ steps:
 4) it should connect with this connectionstirng, which is default "Data Source=(localdb)\mssqllocaldb;Initial Catalog=TALDbContext.TALContext;Integrated Security=True;MultipleActiveResultSets=True"
 5) once the master data set up is done, it will show the Premium Calculator form 
 
+Added the premium caluclation on age, death sum insured change as well, if the form is valid.  
