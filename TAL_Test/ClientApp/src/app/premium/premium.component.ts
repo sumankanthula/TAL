@@ -56,12 +56,12 @@ export class PremiumComponent {
     this.prepareInitialSetup();
   }
 
-  public onPremiumCalculate() {
-    debugger;
+  public onPremiumCalculate(isPremiumCalcChanges = false) {
     this.errorMessages = [];
+    this.monthlyPremium = 0;
     if (this.premiumFormData.status === 'INVALID') {
       this.fieldValidation.forEach(ele => {
-        if (this.premiumFormData.get(ele.controlName).invalid) {
+        if (this.premiumFormData.get(ele.controlName).invalid && !isPremiumCalcChanges) {
           this.errorMessages.push(ele.errorMessge);
         }
       });
@@ -71,18 +71,17 @@ export class PremiumComponent {
     let occupationRating = this.premiumData.occupationRatings.find(x => x.occupationId === this.premiumFormData.get('occupation').value);
     let rating = this.premiumData.ratings.find(x => x.id === occupationRating.ratingId);
     // Death Premium = (Death Cover amount * Occupation Rating Factor * Age) /1000 * 12
-    this.monthlyPremium = (this.premiumFormData.get('deathSumInsured').value * rating.rate  * this.premiumFormData.get('age').value) / 1000 * 12;
+    this.monthlyPremium = (this.premiumFormData.get('deathSumInsured').value * rating.rate * this.premiumFormData.get('age').value) / 1000 * 12;
   }
 
   public onOccupationChange(val) {
     if (!val) return;
-    this.onPremiumCalculate();
+    this.onPremiumCalculate(true);
   }
 
   public getPremiumData() {
     this.premiumService.getPremiumData().subscribe((resp: any) => {
       this.premiumData = resp;
-      debugger;
     }, (error: any) => {
       console.log(error);
     });
