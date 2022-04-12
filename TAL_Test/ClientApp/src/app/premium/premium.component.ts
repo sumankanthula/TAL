@@ -69,7 +69,7 @@ export class PremiumComponent {
     }
 
     let occupationRating = this.premiumData.occupationRatings.find(x => x.occupationId === this.premiumFormData.get('occupation').value);
-    let rating = this.premiumData.ratings.find(x => x.id === occupationRating.occupationId);
+    let rating = this.premiumData.ratings.find(x => x.id === occupationRating.ratingId);
     // Death Premium = (Death Cover amount * Occupation Rating Factor * Age) /1000 * 12
     this.monthlyPremium = (this.premiumFormData.get('deathSumInsured').value * rating.rate  * this.premiumFormData.get('age').value) / 1000 * 12;
   }

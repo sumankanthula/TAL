@@ -46,7 +46,7 @@
   <button type="button" class="btn btn-primary" (click)="onPremiumCalculate()">Calculate</button>
 
   <div class="form-row">
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-12" *ngIf="monthlyPremium > 0">
       <label>Your monthly premium is {{monthlyPremium}} </label>
 
     </div>
